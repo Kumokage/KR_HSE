@@ -21,8 +21,8 @@ exprs.append(read_expr('exists x exists y (C(x,m,d,y) & M(y))'))
 addones = []
 addones.append(read_expr('M(r)'))
 addones.append(read_expr('all x all y all z all w (B(x,y,z,w) <-> Se(y,x,z,w))'))
-addones.append(read_expr('all x all y all z all w (B(x,y,z,w) <-> P(y,x,z,w))'))
-addones.append(read_expr('all x all y all z all w (B(x,y,z,w) <-> C(y,x,z,w))'))
+addones.append(read_expr('all x all y all z all w (B(x,y,z,w) <-> P(x,y,z,w))'))
+addones.append(read_expr('all x all y all z all w (B(x,y,z,w) <-> C(x,y,w,z))'))
 addones.append(read_expr('Ge(m, r)'))
 addones.append(read_expr('Gi(v, m, r)'))
 addones.append(read_expr('all x all y all z all w (B(x,y,z,w) <-> Ge(x, z) & Ge(y, w))'))
@@ -34,5 +34,11 @@ for i, expr in enumerate(exprs [:4]):
     proofs.append([])
     for j, goal in enumerate (exprs):
         prover = nltk. Prover9 ()
-        prover.config_prover9('/Users/alexglushko/Downloads/Prover9-Mace4-v05B.app/Contents/MacOS/prover9-mace4')
+        prover.config_prover9('C:\\Program Files (x86)\\Prover9-Mace4\\bin-win32')
         proofs[i].append(int(prover.prove (goal, assumptions)))
+
+for i in proofs:
+    for j in i:
+        print(j, end=" ")
+    print('\n')
+ 
